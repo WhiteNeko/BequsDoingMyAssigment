@@ -37,6 +37,7 @@ export const generateUsersHTML = (userData) => {
 }
 
 export const generateUserAvatarHTML = (post, userData) => {
+
     const user = document.createElement('p');
     user.className = 'user';
     post.appendChild(user);
@@ -58,32 +59,33 @@ export const generateUserAvatarHTML = (post, userData) => {
 }
 
 
-export const generateCommentsHTML = (commentData) => {
+export const generateCommentsHTML = (commentsContainer, comments) => {
+    // loop comments
+    comments.forEach((comment) => {
 
-    const comments = document.getElementsByClassName('comments');
-    console.log(comments);
+        const body = document.createElement('p');
+        body.className = 'body';
+        body.textContent = comment.body;
+        commentsContainer.appendChild(body);
+    
+        const likes = document.createElement('p');
+        likes.className = 'likes';
+        likes.textContent = "likes: " + comment.likes;
+        commentsContainer.appendChild(likes);
+    
+        const user = document.createElement('div');
+        user.className = 'user';
+        commentsContainer.appendChild(user);
+    
+        const username = document.createElement('p');
+        username.className = 'username';
+        username.textContent = comment.user.username;
+        user.appendChild(username);
+    });
 
-    const body = document.createElement('p');
-    body.className = 'body';
-    body.textContent = commentData.body
-    comments.appendChild(body);
-
-    const likes = document.createElement('p');
-    likes.className = 'likes';
-    likes.textContent = "likes: " + commentData.likes
-    comments.appendChild(likes);
-
-    const user = document.createElement('div');
-    user.className = 'user';
-    comments.appendChild(user);
-
-    const username = document.createElement('p');
-    username.className = 'username';
-    username.textContent = commentData.user.username
-    user.appendChild(username);
 }
 
-export const generatePostHTML = (postData) => {
+export const generatePostHTML = (postData, comments) => {
     const posts = document.getElementById('posts')
 
     const post = document.createElement('section');
@@ -91,8 +93,6 @@ export const generatePostHTML = (postData) => {
     posts.appendChild(post);
 
     generateUserAvatarHTML(post, postData.user);
-
-    // generateCommentsHTML(post, commentData);
 
     const title = document.createElement('h3');
     title.className = 'title';
@@ -128,16 +128,12 @@ export const generatePostHTML = (postData) => {
     dislikes.textContent = "dislikes: " + postData.reactions.dislikes;
     metrics.appendChild(dislikes);
 
+    const commentsContainer = document.createElement('div'); 
+    commentsContainer.className = 'comments-container';
+    post.appendChild(commentsContainer)
 
-    const comments = document.createElement('div');
-    comments.className = 'comments';
-    post.appendChild(comments)
-
-    const comment = document.createElement('a');
-    comment.className = 'button-comment';
-    comment.setAttribute('href', 'comments')
-    comment.textContent = 'Comments';
-    comments.appendChild(comment);
+    // pass kurwa comments container for comments and comments array
+    generateCommentsHTML(commentsContainer, comments);
 }
 
 

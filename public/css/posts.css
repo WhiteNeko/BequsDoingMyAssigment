@@ -100,7 +100,8 @@
     grid-template-areas:
     "user header categories"
     "user paragraph paragraph"
-    " metrics metrics  comments";
+    "metrics metrics comments"
+    "comment comment comment";
     grid-template-columns: 110px 1fr 140px;
     padding: 50px 0;
 }
@@ -147,13 +148,12 @@
 
 }
 
-.comments {
-    grid-area: comments;
-    padding-top: 10px;
-    text-align: center;
-
+.comments-container {
+    grid-area: comment;
+    display: flex;
+    flex-direction: column;
+    min-height: 50px;
 }
-
 
 .button-comment {
     display: inline-block;

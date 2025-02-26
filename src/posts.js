@@ -20,33 +20,40 @@ const extractData = async (http) => {
 
         const postsData = await extractData('https://dummyjson.com/posts?limit=251');
         const usersData = await extractData('https://dummyjson.com/users?limit=251');
-        const commentData = await extractData('https://dummyjson.com/comments?limit=10');
+        const commentData = await extractData('https://dummyjson.com/comments?limit=251');
+
         const posts = postsData.posts
         const users = usersData.users
         const comments = commentData.comments
 
-
-
-
-        users.forEach(user => {
-
-        })
-
         posts.forEach(post => {
             post.user = users.find(user => user.id === post.userId);
+            
+            console.log(comments.length)
 
-            generatePostHTML(post)
+            // declare empty array for all the fitting comments
+            const commentsForPost = [];
+
+            let index = 0;
+
+            // iterate all the comments
+            for (let i = 0; i < comments.length; i++) {
+                console.log("comments[i].id == " + comments[i].postId + " and post.id == " + post.id)
+
+                // if the comment's postId matches the current post's id
+                if (comments[i].postId === post.id) {
+                    // If it matches, put it to the array of comments
+                    commentsForPost[index] = comments[i];
+                }
+
+                index++;
+            }
+            
+            console.log(commentsForPost)
+            
+            // push current post with all the comments to post together
+            generatePostHTML(post,  commentsForPost)
         });
-
-        comments.forEach(comment => {
-            comment.post = posts.find(post => post.id === comment.postId)
-            comment.user = comments.find(user => user.id === comment.user.id);
-
-            generateCommentsHTML(comment)
-        });
-
-
-
     } catch (error) {
         console.log(error)
     }
