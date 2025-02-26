@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/posts.css">
+</head>
+<body>
+<div id="container">
+    <header id="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="../images/Kindred.png" alt="Logo">
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="posts.html">Posts</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main id="main">
+        <section class="content">
+            <div class="content-title">
+                <h2>POSTS</h2>
+            </div>
+            <div class="filter">
+                <form id="form-filters">
+                    <label class="label" for="label-filter">Filter by:</label>
+                    <select name="filter" id="label-filter">
+                        <option value="all">All</option>
+                        <option value="posts">Posts</option>
+                    </select>
+
+                    <div class="form-button">
+                        <button class="button-filter" type="submit">Filter</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="sorter">
+                <div class="sort-users">
+                    <p>Users</p>
+                </div>
+                <div class="sorter-posts">
+                    <a class="sorter-posts-link">Posts</a>
+                </div>
+                <div class="sorter-reactions">
+                    <a class="sorter-reactions-link">Reactions</a>
+                </div>
+                <div class="sorter-views">
+                    <a class="sorter-views-link">Views</a>
+                </div>
+            </div>
+            <div id="posts">
+                <section class="post">
+                    <h3 class="title">His mother had always taught him</h3>
+                    <p class="user">User</p>
+                    <p class="categories">Categories: history, american, crime</p>
+                    <p class="paragraph">His mother had always taught him not to ever think of himself as better
+                        than
+                        others. He'd tried to live by this motto. He never looked down on those who were less
+                        fortunate or
+                        who had less money than him. But the stupidity of the group of people he was talking to made
+                        him
+                        change his mind.</p>
+                    <div class="metrics">
+                        <p class="views">Views: 305</p>
+                        <p class="likes">likes: 192</p>
+                        <p class="dislikes">dislikes: 25</p>
+                    </div>
+                    <div class="comments">
+                        <div class="comments">
+                            <a class="button-comment">COMMENTS</a>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </section>
+    </main>
+
+
+    <footer id="footer">
+        <section class="footer-container">
+            <h2>Footer</h2>
+        </section>
+    </footer>
+</div>
+</body>
+<script src="../../src/header.js"></script>
+<script type="module" src="../../src/posts.js"></script>
+<script type="module" src="../../src/generatePost.js"></script>
+</html>

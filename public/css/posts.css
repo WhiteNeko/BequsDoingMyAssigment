@@ -1,0 +1,166 @@
+#main {
+    display: block;
+    width: 1000px;
+    margin: 10px auto;
+    background-color: #9f313a;
+}
+
+.content {
+    padding: 10px;
+}
+
+.content-title {
+    display: block;
+    padding-bottom: 10px;
+
+}
+
+.content-title h2 {
+    font-size: 22px;
+}
+
+
+/*Filters form*/
+
+.filter {
+    padding: 10px 0;
+
+}
+
+#form-filters {
+    display: inline-block;
+}
+
+
+#form-filters label {
+    float: left;
+}
+
+#label-filter {
+    float: left;
+    width: 150px;
+    margin: 0 15px 0 5px;
+}
+
+
+.form-button {
+    width: 100px;
+    float: left;
+}
+
+.button-filter {
+    width: 120px;
+    height: 20px;
+    background-color: #9f313a;
+    text-align: center;
+    text-decoration: none;
+    border: solid 1px;
+}
+
+.button-filter:hover {
+    background-color: pink;
+    color: black;
+}
+
+/*Sorters*/
+.sorter {
+
+    display: flex;
+}
+
+.sort-users{
+    margin-right: 80px;
+}
+
+.sorter-posts {
+    flex-grow: 1;
+}
+
+.sorter-reactions {
+}
+
+.sorter-views {
+    margin-left: 40px;
+}
+
+.sorter-comments {
+    margin-left: 40px;
+}
+
+/*Main content posts*/
+#posts {
+
+    flex-direction: column;
+}
+
+
+
+.post {
+    display: grid;
+    grid-template-areas:
+    "user header categories"
+    "user paragraph paragraph"
+    " metrics metrics  comments";
+    grid-template-columns: 110px 1fr 140px;
+    padding: 50px 0;
+}
+
+.post:first-child {
+    margin: 0;
+}
+.post:last-child {
+    margin: 0;
+}
+
+
+
+.post h3{
+    grid-area: header;
+    font-size: 18px;
+    padding-bottom: 10px;
+    padding-left: 6px;
+
+}
+.user {
+    grid-area: user;
+    display:flex;
+    flex-direction: column;
+}
+
+.user img{
+    height: 100px;
+    width: 100px;
+}
+
+.categories {
+    grid-area: categories;
+}
+
+.paragraph {
+    grid-area: paragraph;
+    padding: 0 6px;
+
+    }
+
+.metrics {
+    grid-area: metrics;
+
+}
+
+.comments {
+    grid-area: comments;
+    padding-top: 10px;
+    text-align: center;
+
+}
+
+
+.button-comment {
+    display: inline-block;
+    width: 120px;
+    text-align: center;
+    align-content: center;
+    height: 30px;
+    border: 1px solid #000;
+
+}
