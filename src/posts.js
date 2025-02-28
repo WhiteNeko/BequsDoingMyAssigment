@@ -1,6 +1,5 @@
 import {
-    generateUsersHTML, generateCommentsHTML, generateUserAvatarHTML,
-    generatePostHTML
+    generateUsersHTML, generateCommentsHTML, generateUserAvatarHTML, generatePostHTML
 } from "./generatePost.js";
 
 
@@ -15,38 +14,41 @@ const extractData = async (http) => {
 }
 
 
+function filterUsers(users) {
+    return users.map((({id, age, username, image, email, firstName, lastName}) => ({
+        id,
+        age,
+        username,
+        image,
+        email,
+        firstName,
+        lastName
+    })))
+}
+
+
 (async function posts() {
     try {
 
         const postsData = await extractData('https://dummyjson.com/posts?limit=251');
         const usersData = await extractData('https://dummyjson.com/users?limit=251');
-        const commentData = await extractData('https://dummyjson.com/comments?limit=10');
+        const commentData = await extractData('https://dummyjson.com/comments?limit=251');
         const posts = postsData.posts
-        const users = usersData.users
+        const users = filterUsers(usersData.users)
         const comments = commentData.comments
 
+        console.log(users)
 
-
-
-        users.forEach(user => {
-
-        })
 
         posts.forEach(post => {
             post.user = users.find(user => user.id === post.userId);
+            post.comment = comments.filter(u => u.postId === post.id);
 
             generatePostHTML(post)
+            post.comment.forEach(comment => {
+                generateCommentsHTML(comment, post.id - 1)
+            })
         });
-
-        comments.forEach(comment => {
-            comment.post = posts.find(post => post.id === comment.postId)
-            comment.user = comments.find(user => user.id === comment.user.id);
-
-            generateCommentsHTML(comment)
-        });
-
-
-
     } catch (error) {
         console.log(error)
     }

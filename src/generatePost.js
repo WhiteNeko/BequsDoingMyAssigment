@@ -58,24 +58,27 @@ export const generateUserAvatarHTML = (post, userData) => {
 }
 
 
-export const generateCommentsHTML = (commentData) => {
+export const generateCommentsHTML = (commentData, index) => {
 
-    const comments = document.getElementsByClassName('comments');
-    console.log(comments);
+    const comments = document.getElementsByClassName('comments')
+
+    const div = document.createElement('div');
+    div.className = 'comment';
+    comments.item(index).appendChild(div);
 
     const body = document.createElement('p');
     body.className = 'body';
     body.textContent = commentData.body
-    comments.appendChild(body);
+    div.appendChild(body);
 
     const likes = document.createElement('p');
     likes.className = 'likes';
     likes.textContent = "likes: " + commentData.likes
-    comments.appendChild(likes);
+    div.appendChild(likes);
 
     const user = document.createElement('div');
     user.className = 'user';
-    comments.appendChild(user);
+    div.appendChild(user);
 
     const username = document.createElement('p');
     username.className = 'username';
@@ -83,7 +86,7 @@ export const generateCommentsHTML = (commentData) => {
     user.appendChild(username);
 }
 
-export const generatePostHTML = (postData) => {
+export const generatePostHTML = (postData, commentData) => {
     const posts = document.getElementById('posts')
 
     const post = document.createElement('section');
@@ -133,11 +136,7 @@ export const generatePostHTML = (postData) => {
     comments.className = 'comments';
     post.appendChild(comments)
 
-    const comment = document.createElement('a');
-    comment.className = 'button-comment';
-    comment.setAttribute('href', 'comments')
-    comment.textContent = 'Comments';
-    comments.appendChild(comment);
+    // generateCommentsHTML(post.comment)
 }
 
 
